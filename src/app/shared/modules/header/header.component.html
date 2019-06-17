@@ -1,0 +1,69 @@
+<header>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm navbar navbar-top fixed-top">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" [routerLink]="['/', 'store', 'products']" [routerLinkActive]="['active']">Store</a>
+      <a class="p-2 text-dark" [routerLink]="['/', 'store', 'about']" [routerLinkActive]="['active']">About</a>
+      <a class="p-2 text-dark" [routerLink]="['/', 'store', 'contact']" [routerLinkActive]="['active']">Contact</a>
+    </nav>
+    <div>
+      <span ngbDropdown class="cart">
+        <button class="btn btn-outline-link" id="dropdownCart" ngbDropdownToggle (click)="openCart()">
+          <span class="icon fa fa-shopping-basket"></span>
+          <span class="badge badge-warning">{{ dataCart }}</span>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownCart" class="dropdown-cart">
+          <div class="dropdown-item cart-title">
+            <h5>
+              <span class="float-right">
+                <button type="button" class="btn btn-link" (click)="removeAllProductsCart()">Clear all</button>
+              </span>
+              Products list
+            </h5>
+          </div>
+
+          <div *ngIf="hasProducts" class="cart-scroll">
+            <div *ngFor="let product of products" class="cart-item">
+              <div class="card-icon">
+                <div class="icon-circle bg-primary">
+                    <span class="fa fa-eye"></span>
+                </div>
+              </div>
+              <div class="cart-details">
+                <h5>{{ product.title }}</h5>
+                <p class="cart-info">
+                  <span>Qtd: <small>{{ product.count }}</small></span>
+                  <span>price: <small>{{ product.price | currency }}</small></span>
+                </p>
+              </div>
+              <div class="cart-action">
+                <div class="text-center mb-1">
+                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteProductCart(product)">
+                    <span class="fa fa-trash-o" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-sm btn-outline-primary" (click)="addProductCart(product)">
+                    <span class="fa fa-plus" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeProductCart(product)">
+                    <span class="fa fa-minus" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!hasProducts" class="cart-empty">
+            <span>Empty</span>
+          </div>
+
+          <a [routerLink]="['/', 'store', 'cart']" class="dropdown-item text-center text-primary cart-all">
+            View All
+          </a>
+        </div>
+      </span>
+      <a class="btn btn-outline-primary" href="#">Sign up</a>
+    </div>
+  </div>
+</header>

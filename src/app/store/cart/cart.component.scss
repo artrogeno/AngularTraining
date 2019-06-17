@@ -1,0 +1,11 @@
+.card-page-cart {
+  border: none;
+  box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+  margin-bottom: 30px;
+  .card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.5rem;
+  }
+}

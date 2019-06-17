@@ -1,0 +1,50 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Company name</h1>
+    <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc.
+      Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+    <p>
+      <a href="#" class="btn btn-outline-primary my-2">Main call to action</a>
+      <a href="#" class="btn btn-outline-secondary my-2">Secondary action</a>
+    </p>
+  </div>
+</section>
+
+<div class="container pt-4-rem pb-4-rem">
+  <div class="row">
+
+    <div class="col-md-4" *ngFor="let product of products">
+      <div class="card card-product mb-4 shadow-sm">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#c9c9c9"></rect><text x="50%" y="50%" fill="#eceeef"
+            dy=".3em">{{ product.category }}</text>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title text-dark">
+            <span class="product-title">{{ product.title }}</span>
+            <span class='product-price'>
+              <span *ngIf="product.sale" class="fa fa-certificate text-warning"></span>
+              <span>{{ product.price | currency }}</span>
+            </span>
+          </h5>
+          <p class="card-text h-rem-4" [innerHTML]="product.subtitle"></p>
+          <div class="d-flex justify-content-between align-items-center row no-gutters">
+
+            <a class="btn btn-outline-dark" [routerLink]="['/', 'store', 'product', product.id]">
+              <span class="fa fa-eye pr-0-3-rem" aria-hidden="true"></span>
+              view
+            </a>
+
+            <button type="button" class="btn btn-dark" (click)="addCart(product)">
+              <span class="fa fa-cart-plus pr-0-3-rem"></span>
+              add cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
